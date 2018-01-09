@@ -1,11 +1,10 @@
 FROM debian:jessie
 
-ARG DOWNLOAD_URL
+ADD grafana.deb /tmp/grafana.deb
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install libfontconfig curl ca-certificates && \
     apt-get clean && \
-    curl ${DOWNLOAD_URL} > /tmp/grafana.deb && \
     dpkg -i /tmp/grafana.deb && \
     rm /tmp/grafana.deb && \
     curl -L https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64 > /usr/sbin/gosu && \
